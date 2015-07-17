@@ -1,0 +1,30 @@
+{
+  "name": "makemea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owenso/MakeMeA.git"
+  },
+  "author": "Owens O'Brien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/owenso/MakeMeA/issues"
+  },
+  "homepage": "https://github.com/owenso/MakeMeA#readme",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "express-handlebars": "^2.0.1",
+    "fs": "0.0.2",
+    "method-override": "^2.3.4",
+    "morgan": "^1.6.1",
+    "path": "^0.11.14",
+    "pg": "^4.4.0"
+  }
+}
