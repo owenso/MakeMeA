@@ -12,13 +12,30 @@ nav{
 }
 h1{
 	margin:0;
-	float:left;
-	padding-left:1em;
 	padding-top:.25em;
 }
+#left-nav{
+	display: flex;
+	position:absolute;
+	top:0;
+	left:5%;
+	padding-left:1em;
+}
+#left-menu-nav{
+	display: flex;
+	padding-left:1em;
+	padding-top:.75em;
+}
+
+#left-nav h2{
+	margin:0 1em;
+}
+
 #right-nav{
 	display: flex;
-	float: right;
+	position:absolute;
+	top:0;
+	right:5%;
 	padding-right:1em;
 	padding-top:.75em;
 }
@@ -37,12 +54,14 @@ h1{
 #main-search input[type=text]{
 	width:600px;
 	height:50px;
+	background-color: #F3E9D2;
 }
 
 #main-search input[type=submit]{
 	width:80px;
 	height:57px;
 	margin:0;
-}
-}
+	background-color: #114B5F;
+	color:#F3E9D2;
+
 }
