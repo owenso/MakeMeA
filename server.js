@@ -1,12 +1,14 @@
-var express = require('express');
-var app = express();
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
+var express        = require('express');
+var app            = express();
+var logger         = require('morgan');
+// var bodyParser  = require('body-parser'); - removed because cant handle files in forms
+var bb             = require('express-busboy');
+var exphbs         = require('express-handlebars');
 var methodOverride = require('method-override');
-var db = require('./db.js');
-var path = require('path');
-var fs = require('fs');
+var db             = require('./db.js');
+var path           = require('path');
+var fs             = require('fs');
+var session        = require('express-session');
 
 app.listen(3000);
 
@@ -14,7 +16,12 @@ app.engine('handlebars', exphbs({defaultLayout: 'main', extname: 'handlebars'}))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.urlencoded());
+// app.use(bodyParser.urlencoded()); - see above, body-parser removed
+
+bb.extend(app, {
+    upload: true,
+    path: 'public/uploads/'
+});
 app.use(express.static('public'));
 app.use(logger('dev'));
 
