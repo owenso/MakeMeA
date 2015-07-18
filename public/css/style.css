@@ -108,3 +108,37 @@ h1{
 	height:32px;
 	display:block;
 }
+#avatar-selector{
+	margin:0 auto;
+	height:205px;
+	width: 300px;
+	padding: 5px;
+	overflow-y:hidden;
+	overflow-x:scroll;
+	white-space: nowrap;
+
+}
+
+#avatar-selector input[type=radio]{
+	display: none;
+}
+
+#avatar-selector label{
+	height: 200px;
+	width: 200px;
+	margin:0 5px;
+	display: inline-block;
+}
+
+
+input[type=radio] + label {
+    display:inline-block;
+}
+
+
+input[type=radio] + img:hover{
+	border: 2px white solid;
+}
+input[type=radio]:checked + img { 
+    border: 5px red solid;
+}
