@@ -109,13 +109,14 @@ h1{
 	display:block;
 }
 #avatar-selector{
-	margin:0 auto;
+	margin:0 auto 10px auto;
 	height:205px;
 	width: 300px;
 	padding: 5px;
 	overflow-y:hidden;
 	overflow-x:scroll;
 	white-space: nowrap;
+	background-color: #F3E9D2;
 
 }
 
@@ -137,8 +138,8 @@ input[type=radio] + label {
 
 
 input[type=radio] + img:hover{
-	border: 2px white solid;
+	border: 5px white solid;
 }
 input[type=radio]:checked + img { 
-    border: 5px red solid;
+    border: 5px #114B5F solid;
 }

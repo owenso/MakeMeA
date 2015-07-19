@@ -18,7 +18,12 @@ app.get('/newUser', function(req, res){
 });
 
 app.post('/createUser', function(req, res){
-	console.log(req);
+	var userinfo=req.body;
+	if(req.files){
+		userinfo.avatar_url = req.files.file;
+	}
+	// User.newUser(userinfo);
+	console.log(userinfo);
 	res.redirect('/');
 });
 

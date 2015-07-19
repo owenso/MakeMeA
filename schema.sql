@@ -7,8 +7,10 @@ CREATE TABLE users(
 	username VARCHAR(255),
 	firstname VARCHAR(255),
 	lastname VARCHAR(255),
-	geoloc VARCHAR(255),
-	avatar_url TEXT,
+	country VARCHAR(255),
+	city VARCHAR(255),
+	region VARCHAR(255),
+	avatar TEXT,
 	email VARCHAR(255),
 	chosen INTEGER,
 	submissions INTEGER
