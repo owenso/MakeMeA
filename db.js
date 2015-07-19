@@ -53,6 +53,7 @@ module.exports = {
 			});
 			var query = 'INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ') RETURNING id AS id';
 			client.query(query, values, function (err, result){
+				console.log(err);
 				done();
 				cb(result.rows[0]);
 			});

@@ -1,4 +1,4 @@
-var User = require('../models/user.js').Media;
+var User = require('../models/user.js').User;
 var db = require('../db.js');
 var fs = require('fs');
 
@@ -19,10 +19,12 @@ app.get('/newUser', function(req, res){
 
 app.post('/createUser', function(req, res){
 	var userinfo=req.body;
-	if(req.files){
-		userinfo.avatar_url = req.files.file;
+	if(req.files.avatar){
+		console.log('in here');
+		userinfo.avatar_url = req.files.avatar.file;
+		console.log(req.files);
 	}
-	// User.newUser(userinfo);
+	User.newUser(userinfo);
 	console.log(userinfo);
 	res.redirect('/');
 });
