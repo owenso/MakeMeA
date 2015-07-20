@@ -21,7 +21,8 @@ CREATE TABLE requests(
 	id SERIAL PRIMARY KEY,
 	title TEXT,
 	description TEXT,
-	daterequested DATE,
+	filled BOOLEAN;
+	daterequested DEFAULT current_timestamp,
 	users_id INTEGER references users
 );
 CREATE TABLE files(

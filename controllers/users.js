@@ -23,10 +23,10 @@ app.post('/createUser', function(req, res){
 		userinfo.avatar_url = req.files.avatar.file;
 	}
 	User.newUser(userinfo, function(user){
-		req.session.cookie.id = user.id;
-		console.log(req.session.cookie.id);
+		req.session.userid = user.id;
+		req.session.firstname = user.firstname;
+		res.redirect('/');
 	});
-	res.redirect('/');
 });
 
 app.get('/login', function(req,res){
@@ -35,13 +35,25 @@ app.get('/login', function(req,res){
 
 app.post('/login', function(req,res){
 	User.userLogin(req.body, function(user){
-		req.session.cookie.id = user.id;
-		console.log(req.session.cookie);
+		//Adding information to cookie here
+		req.session.userid= user.id;
+		req.session.firstname= user.firstname;
+		res.redirect('/');
 	});
-	res.redirect('/');
 });
 
-app.delete('/logout', function(req, res){
-	req.session.cookie.id = null;
+app.get('/logout', function(req, res){
+		req.session.destroy(function(err) {
+			console.log("User Logged Out");
+		});
+		res.redirect('/');
 });
+
+app.get('/profile/', function(req,res){
+	User.userProfile(req.session.userid, function (user){
+		res.render('profile', user[0]);
+	});
+});
+
+
 };

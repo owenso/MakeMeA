@@ -25,7 +25,6 @@ bb.extend(app, {
 app.use(express.static('public'));
 app.use(logger('dev'));
 
-app.use(session({ secret: 'imnotreallysurewhatthisdoeswaitithinkifigureditout', cookie: { maxAge: 24*60*60*1000 }}));
 
 app.use(methodOverride(function(req,res){
 	if(req.body && typeof req.body === 'object' && '_method' in req.body){
@@ -34,6 +33,9 @@ app.use(methodOverride(function(req,res){
 		return method;
 	}
 }));
+app.use(session({ secret: 'imnotreallysurewhatthisdoeswaitithinkifigureditout', 
+									saveUninitialized: false,
+  								resave: false}));
 
 fs.readdirSync('./controllers').forEach(function (file) {
  if(file.substr(-3) == '.js') {
@@ -45,6 +47,19 @@ fs.readdirSync('./controllers').forEach(function (file) {
 
 //Routes
 app.get('/', function (req, res){
-	console.log("Home page cookie= " + req.session.cookie.id);
-	res.render('home');
+	res.render('home', {
+		helpers: {
+			loggedin : function() {
+				  if (req.session.userid){
+				  	var name = req.session.firstname;
+				  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+				  	return  good;
+				  }
+				  else{
+				  	var bad = '<a href="/newUser"><h2>Sign-Up</h2></a><a href="/login"><h2>Sign-In</h2></a>';
+				  	return  bad;
+				  }
+			},
+		},
+});
 });
