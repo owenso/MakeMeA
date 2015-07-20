@@ -18,15 +18,30 @@ app.get('/newUser', function(req, res){
 });
 
 app.post('/createUser', function(req, res){
-	var userinfo=req.body;
+	var userinfo = req.body;
 	if(req.files.avatar){
-		console.log('in here');
 		userinfo.avatar_url = req.files.avatar.file;
-		console.log(req.files);
 	}
-	User.newUser(userinfo);
-	console.log(userinfo);
+	User.newUser(userinfo, function(user){
+		req.session.cookie.id = user.id;
+		console.log(req.session.cookie.id);
+	});
 	res.redirect('/');
 });
 
+app.get('/login', function(req,res){
+	res.render('userlogin');
+});
+
+app.post('/login', function(req,res){
+	User.userLogin(req.body, function(user){
+		req.session.cookie.id = user.id;
+		console.log(req.session.cookie);
+	});
+	res.redirect('/');
+});
+
+app.delete('/logout', function(req, res){
+	req.session.cookie.id = null;
+});
 };

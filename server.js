@@ -25,6 +25,8 @@ bb.extend(app, {
 app.use(express.static('public'));
 app.use(logger('dev'));
 
+app.use(session({ secret: 'imnotreallysurewhatthisdoeswaitithinkifigureditout', cookie: { maxAge: 24*60*60*1000 }}));
+
 app.use(methodOverride(function(req,res){
 	if(req.body && typeof req.body === 'object' && '_method' in req.body){
 		var method = req.body._method;
@@ -43,5 +45,6 @@ fs.readdirSync('./controllers').forEach(function (file) {
 
 //Routes
 app.get('/', function (req, res){
+	console.log("Home page cookie= " + req.session.cookie.id);
 	res.render('home');
 });

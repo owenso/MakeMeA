@@ -14,9 +14,10 @@ module.exports = {
 		});
 		this.end();
 	},
-	find: function (table, id, cb){
+	find: function (table, column, value, cb){
 		pg.connect(dbUrl, function (err, client, done){
-			client.query('SELECT * FROM ' + table + ' WHERE id=' + id, function (err, result){
+			console.log(err);
+			client.query('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'', function (err, result){
 				done();
 				cb(result.rows);
 			});
