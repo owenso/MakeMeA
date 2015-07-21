@@ -108,16 +108,16 @@ module.exports.controller = function(app) {
 			});
 			res.redirect('/');
 	});
-	app.get('/upvote/:make/:id', function(req, res){
-		File.upVote(req.params.id, function(upvoted){
+	app.get('/upvotereq/:make/', function(req, res){
+		Post.upVote(req.params.make, function(upvoted){
 			console.log('upvoted');
-			res.redirect('/request/' + req.params.make);
+			res.redirect('/requests/');
 		});
 	});
-	app.get('/downvote/:make/:id', function(req, res){
-		File.downVote(req.params.id, function(downvoted){
+	app.get('/downvotereq/:make', function(req, res){
+		Post.downVote(req.params.make, function(downvoted){
 			console.log('downvoted');
-			res.redirect('/request/' + req.params.make);
+			res.redirect('/requests/');
 		});
 	});
 };

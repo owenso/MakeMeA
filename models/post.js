@@ -7,7 +7,7 @@ module.exports.Post = {
 		});
 	},
 	getRequests: function(body, callback){
-		db.all('requests', function(allofem){
+		db.allOrdered('requests', 'votes', 'DESC', function(allofem){
 			callback(allofem);
 		});
 	},
@@ -22,13 +22,18 @@ module.exports.Post = {
 		});
 	},
 	upVote:function(id, callback){
-		db.updateOne('files', 'votes', ('votes + 1'), id, function(upvoted){
+		db.updateOne('requests', 'votes', ('votes + 1'), id, function(upvoted){
 			callback(upvoted);
 		});
 	},
 	downVote:function(id, callback){
-		db.updateOne('files', 'votes', ('votes - 1'), id, function(downvoted){
+		db.updateOne('requests', 'votes', ('votes - 1'), id, function(downvoted){
 			callback(downvoted);
+		});
+	},
+	getUsersRequests: function(id, callback){
+		db.findRelationsOrdered('requests', 'users_id', id, 'votes', 'DESC', function(requests){
+			callback(requests);
 		});
 	},
 

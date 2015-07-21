@@ -6,4 +6,12 @@ City: {{thisuser.city}}<br>
 Region : {{thisuser.region}}<br>
 email : {{thisuser.email}}<br>
 Creations Chosen: {{thisuser.chosen}}<br>
-Submissions : {{thisuser.submissions}} 
+Submissions : {{thisuser.submissions}} <br>
+{{#each subs}}
+<br>
+<div>
+{{title}}
+{{daterequested}}
+{{votes}}
+</div>
+{{/each}}

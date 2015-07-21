@@ -1,4 +1,5 @@
 var User = require('../models/user.js').User;
+var Post = require('../models/post.js').Post;
 var db = require('../db.js');
 var fs = require('fs');
 
@@ -78,10 +79,12 @@ app.get('/logout', function(req, res){
 		res.redirect('/');
 });
 
-app.get('/profile/', function(req,res){
-	User.userProfile(req.session.userid, function (user){
+app.get('/profile/:id', function(req,res){
+	Post.getUsersRequests(req.params.id, function(submitted){
+	User.userProfile(req.params.id, function (user){
 		var data = {
 				thisuser:user[0],
+				subs:submitted,
 				helpers: {
 					loggedin : function() {
 						  if (req.session.userid){
@@ -97,6 +100,7 @@ app.get('/profile/', function(req,res){
 				},
 			};
 		res.render('profile', data);
+	});
 	});
 });
 

@@ -14,6 +14,15 @@ module.exports = {
 		});
 		this.end();
 	},
+	allOrdered:function(table, orderBy, ascdesc, cb){
+		pg.connect(dbUrl, function (err,client,done){
+			client.query('SELECT * FROM ' + table + ' ORDER BY ' + orderBy + ' ' +  ascdesc, function (err, result) {
+				done();
+				cb (result.rows);
+			});
+		});
+		this.end();
+	},
 	find: function (table, column, value, cb){
 		pg.connect(dbUrl, function (err, client, done){
 			// console.log(err);
@@ -39,6 +48,15 @@ module.exports = {
 	findRelations: function (table, column, id, cb){
 		pg.connect(dbUrl, function (err, client, done){
 			client.query('SELECT * FROM ' + table + ' WHERE ' + table + '.' + column + ' = ' + id, function (err, result){
+				done();
+				cb(result.rows);
+			});
+		});
+		this.end();
+	},
+	findRelationsOrdered: function (table, column, id, orderBy, ascdesc, cb){
+		pg.connect(dbUrl, function (err, client, done){
+			client.query('SELECT * FROM ' + table + ' WHERE ' + table + '.' + column + ' = ' + id + 'ORDER BY ' + orderBy + " " +  ascdesc, function (err, result){
 				done();
 				cb(result.rows);
 			});
