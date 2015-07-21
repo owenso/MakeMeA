@@ -11,27 +11,29 @@ CREATE TABLE users(
 	country VARCHAR(255),
 	city VARCHAR(255),
 	region VARCHAR(255),
-	avatar TEXT,
+	avatar TEXT DEFAULT 'avatars/avatar-blank.jpg',
 	email VARCHAR(255),
-	chosen INTEGER,
-	submissions INTEGER
+	chosen INTEGER DEFAULT 0,
+	submissions INTEGER DEFAULT 0
 );
 
 CREATE TABLE requests(
 	id SERIAL PRIMARY KEY,
 	title TEXT,
 	description TEXT,
-	filled BOOLEAN;
-	daterequested DEFAULT current_timestamp,
+	filled BOOLEAN DEFAULT FALSE,
+	votes INTEGER DEFAULT 0,
+	daterequested timestamp DEFAULT current_timestamp,
 	users_id INTEGER references users
 );
 CREATE TABLE files(
 	id SERIAL PRIMARY KEY,
 	url TEXT,
-	votes INTEGER,
-	chosen BOOLEAN,
+	votes INTEGER DEFAULT 0,
+	chosen BOOLEAN DEFAULT FALSE,
+	description TEXT,
 	filetype VARCHAR(255),
-	dateuploaded DATE,
+	dateuploaded timestamp DEFAULT current_timestamp,
 	users_id INTEGER references users,
 	requests_id INTEGER references requests
 	)

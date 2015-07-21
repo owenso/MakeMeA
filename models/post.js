@@ -16,6 +16,21 @@ module.exports.Post = {
 			callback(found);
 		});
 	},
+	deleteRequest: function(id, callback){
+		db.delete('requests', id, function(deleted){
+			callback(deleted);
+		});
+	},
+	upVote:function(id, callback){
+		db.updateOne('files', 'votes', ('votes + 1'), id, function(upvoted){
+			callback(upvoted);
+		});
+	},
+	downVote:function(id, callback){
+		db.updateOne('files', 'votes', ('votes - 1'), id, function(downvoted){
+			callback(downvoted);
+		});
+	},
 
 
 

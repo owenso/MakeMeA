@@ -16,8 +16,20 @@ module.exports = {
 	},
 	find: function (table, column, value, cb){
 		pg.connect(dbUrl, function (err, client, done){
-			console.log(err);
+			// console.log(err);
+			// console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'');
 			client.query('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'', function (err, result){
+				done();
+				cb(result.rows);
+			});
+		});
+		this.end();
+	},
+	findOrdered: function (table, column, value, orderBy, ascdesc, cb){
+		pg.connect(dbUrl, function (err, client, done){
+			// console.log(err);
+			// console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'' + 'ORDER BY ' + orderBy + " " +  ascdesc);
+			client.query('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'' + 'ORDER BY ' + orderBy + " " +  ascdesc, function (err, result){
 				done();
 				cb(result.rows);
 			});
@@ -54,7 +66,8 @@ module.exports = {
 			});
 			var query = 'INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ') RETURNING id AS id';
 			client.query(query, values, function (err, result){
-				console.log(err);
+				// console.log(err);
+				// console.log('INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ')');
 				done();
 				cb(result.rows[0]);
 			});
@@ -77,5 +90,15 @@ module.exports = {
 			});
 		});
 		this.end();
-	}
+	},
+	updateOne: function (table, column, value, id, cb) {
+		// console.log('UPDATE ' + table + ' SET ' + column + ' = ' + value + ' WHERE id=' + id);
+		pg.connect(dbUrl, function (err, client, done) {
+			client.query('UPDATE ' + table + ' SET ' + column + ' = ' + value + ' WHERE id=' + id, function (err, result) {
+				done();
+				cb(result);
+			});
+		});
+		this.end();
+	}, 
 };

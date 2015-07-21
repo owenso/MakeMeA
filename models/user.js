@@ -4,8 +4,6 @@ var bcrypt = require('bcrypt');
 module.exports.User = {
 	newUser: function(body, callback){
 		var user=body;
-		user.submissions = 0;
-		user.chosen = 0;
 		bcrypt.hash(user.password, 10, function(err, hash) {
 			user.password = hash;
 			db.create('users', user, function(newuser){
@@ -37,9 +35,15 @@ module.exports.User = {
 		});
 	},
 	userProfile: function(id, callback){
-		console.log(id);
 		db.find('users', 'id', id, function(user){
 			callback(user);
+		});
+	},
+	subCount: function (id, callback){
+		db.find('users', 'id', id, function(user){
+			db.updateOne('users', 'submissions',(user[0].submissions + 1), user[0].id, function(updated){
+				callback(updated);
+			});
 		});
 	}
 

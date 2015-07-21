@@ -12,7 +12,20 @@ app.get('/newUser', function(req, res){
 	 }
 	});
 	data = {
-		avatars:avatarimgs
+		avatars:avatarimgs,
+		helpers: {
+			loggedin : function() {
+				  if (req.session.userid){
+				  	var name = req.session.firstname;
+				  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+				  	return  good;
+				  }
+				  else{
+				  	var bad = '<a href="/newUser"><h2>Sign-Up</h2></a><a href="/login"><h2>Sign-In</h2></a>';
+				  	return  bad;
+				  }
+			},
+	},
 	};
 	res.render('usercreate', data);
 });
@@ -30,7 +43,23 @@ app.post('/createUser', function(req, res){
 });
 
 app.get('/login', function(req,res){
-	res.render('userlogin');
+
+	var data = {
+			helpers: {
+				loggedin : function() {
+					  if (req.session.userid){
+					  	var name = req.session.firstname;
+					  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+					  	return  good;
+					  }
+					  else{
+					  	var bad = '<a href="/newUser"><h2>Sign-Up</h2></a><a href="/login"><h2>Sign-In</h2></a>';
+					  	return  bad;
+					  }
+				},
+		},
+	};
+	res.render('userlogin', data);
 });
 
 app.post('/login', function(req,res){
@@ -51,7 +80,23 @@ app.get('/logout', function(req, res){
 
 app.get('/profile/', function(req,res){
 	User.userProfile(req.session.userid, function (user){
-		res.render('profile', user[0]);
+		var data = {
+				thisuser:user[0],
+				helpers: {
+					loggedin : function() {
+						  if (req.session.userid){
+						  	var name = req.session.firstname;
+						  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+						  	return  good;
+						  }
+						  else{
+						  	var bad = '<a href="/newUser"><h2>Sign-Up</h2></a><a href="/login"><h2>Sign-In</h2></a>';
+						  	return  bad;
+						  }
+					},
+				},
+			};
+		res.render('profile', data);
 	});
 });
 

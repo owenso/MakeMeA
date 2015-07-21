@@ -1,0 +1,17 @@
+<script>
+window.onload = function (){
+	$('desc-box').keypress(function(e){
+		console.log("keypressed")
+      if(e.which == 13){
+           // submit via ajax or
+           $('new-req').submit();
+       }
+    });
+}
+</script>
+
+<form id= "new-req" action="/makeRequest" method="POST">
+	<input name="title" type="text" placeholder="What do you want made?" required>
+	<textarea id ="desc-box" name = "description" placeholder="Description (Optional)"></textarea> 
+	<input type="submit" value="Go!">
+</form>

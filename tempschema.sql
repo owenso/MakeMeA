@@ -1,10 +1,13 @@
-DROP TABLE IF EXISTS requests CASCADE;
+DROP TABLE IF EXISTS files CASCADE;
 
-CREATE TABLE requests(
+CREATE TABLE files(
 	id SERIAL PRIMARY KEY,
-	title TEXT,
+	url TEXT,
+	votes INTEGER,
+	chosen BOOLEAN,
 	description TEXT,
-	filled BOOLEAN,
-	daterequested DATE DEFAULT current_timestamp,
-	users_id INTEGER references users
-);
+	filetype VARCHAR(255),
+	dateuploaded DATE,
+	users_id INTEGER references users,
+	requests_id INTEGER references requests
+	)
