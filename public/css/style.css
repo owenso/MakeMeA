@@ -373,6 +373,10 @@ table, th, td {
 	margin: 0 auto;
 	width:320px;
 }
+.req-media-box-large{
+	margin: 0 auto;
+	width:600px;
+}
 
 #file-submit-form{
 	padding-top: 50px;
@@ -391,6 +395,7 @@ table, th, td {
 }
 
 .file-lists{
-	width:400px;
+	width:320px;
 	margin:0 auto;
+	text-align: center;
 }

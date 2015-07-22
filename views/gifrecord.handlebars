@@ -108,10 +108,10 @@ player.on('finishRecord', function()
         {{dateuploaded}}<br>
 
     </div>
-    <a href="/upvote/{{../info.id}}/{{id}}">Upvote</a><br>
+    <a href="/upvote/{{../info.id}}/{{id}}"><button>Upvote</button></a><br>
         {{votes}}<br>
 
-    <a href="/downvote/{{../info.id}}/{{id}}">Downvote</a>
+    <a href="/downvote/{{../info.id}}/{{id}}"><button>Downvote</button></a>
     {{deleteFile ../info.users_id id}}
     {{/each}}
 </div>
