@@ -2,6 +2,8 @@ var User = require('../models/user.js').User;
 var Post = require('../models/post.js').Post;
 var db = require('../db.js');
 var fs = require('fs');
+var pg= require('pg');
+var dbUrl = "pg://localhost/makemea_db";
 
 module.exports.controller = function(app) {
 
@@ -18,7 +20,8 @@ app.get('/newUser', function(req, res){
 			loggedin : function() {
 				  if (req.session.userid){
 				  	var name = req.session.firstname;
-				  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+				  	var id = req.session.userid;
+				  	var good = '<a href="/profile/' + id + '"><h2>Hi, ' + name + '!</h2><a href="/logout"><h2>Sign-Out</h2></a>';
 				  	return  good;
 				  }
 				  else{
@@ -50,7 +53,8 @@ app.get('/login', function(req,res){
 				loggedin : function() {
 					  if (req.session.userid){
 					  	var name = req.session.firstname;
-					  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+					  	var id = req.session.userid;
+				  		var good = '<a href="/profile/' + id + '"><h2>Hi, ' + name + '!</h2><a href="/logout"><h2>Sign-Out</h2></a>';
 					  	return  good;
 					  }
 					  else{
@@ -89,7 +93,8 @@ app.get('/profile/:id', function(req,res){
 					loggedin : function() {
 						  if (req.session.userid){
 						  	var name = req.session.firstname;
-						  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+						  	var id = req.session.userid;
+				  			var good = '<a href="/profile/' + id + '"><h2>Hi, ' + name + '!</h2><a href="/logout"><h2>Sign-Out</h2></a>';
 						  	return  good;
 						  }
 						  else{

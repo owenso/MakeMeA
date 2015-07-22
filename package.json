@@ -19,16 +19,21 @@
   "homepage": "https://github.com/owenso/MakeMeA#readme",
   "dependencies": {
     "bcrypt": "^0.8.3",
+    "blob-util": "^1.1.2",
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "express-busboy": "^2.4.3",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.11.3",
+    "form-data": "^1.0.0-rc2",
     "fs": "0.0.2",
     "handlebars": "^3.0.3",
     "method-override": "^2.3.4",
+    "mkdirp": "^0.5.1",
     "morgan": "^1.6.1",
     "path": "^0.11.14",
-    "pg": "^4.4.0"
+    "pg": "^4.4.0",
+    "recordrtc-nodejs": "^1.0.0",
+    "videojs-record": "^0.8.3"
   }
 }

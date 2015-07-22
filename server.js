@@ -10,6 +10,7 @@ var path           = require('path');
 var fs             = require('fs');
 var session        = require('express-session');
 
+
 app.listen(3000);
 
 app.engine('handlebars', exphbs({defaultLayout: 'main', extname: 'handlebars'}));
@@ -52,7 +53,8 @@ app.get('/', function (req, res){
 			loggedin : function() {
 				  if (req.session.userid){
 				  	var name = req.session.firstname;
-				  	var good = '<a href="/profile/"><h2>Hi, ' + name + '</h2><a href="/logout"><h2>Sign-Out</h2></a>';
+				  	var id = req.session.userid;
+				  	var good = '<a href="/profile/' + id + '"><h2>Hi, ' + name + '!</h2><a href="/logout"><h2>Sign-Out</h2></a>';
 				  	return  good;
 				  }
 				  else{

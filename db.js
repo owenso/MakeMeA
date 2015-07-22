@@ -25,8 +25,8 @@ module.exports = {
 	},
 	find: function (table, column, value, cb){
 		pg.connect(dbUrl, function (err, client, done){
-			// console.log(err);
-			// console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'');
+			console.log(err);
+			console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'');
 			client.query('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'', function (err, result){
 				done();
 				cb(result.rows);
@@ -36,8 +36,8 @@ module.exports = {
 	},
 	findOrdered: function (table, column, value, orderBy, ascdesc, cb){
 		pg.connect(dbUrl, function (err, client, done){
-			// console.log(err);
-			// console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'' + 'ORDER BY ' + orderBy + " " +  ascdesc);
+			console.log(err);
+			console.log('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'' + 'ORDER BY ' + orderBy + " " +  ascdesc);
 			client.query('SELECT * FROM ' + table + ' WHERE ' + column + '= \'' + value + '\'' + 'ORDER BY ' + orderBy + " " +  ascdesc, function (err, result){
 				done();
 				cb(result.rows);
@@ -84,8 +84,8 @@ module.exports = {
 			});
 			var query = 'INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ') RETURNING id AS id';
 			client.query(query, values, function (err, result){
-				// console.log(err);
-				// console.log('INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ')');
+				console.log(err);
+				console.log('INSERT INTO ' + table + '(' + columns.join(', ') + ') VALUES(' + dollars.join(', ') + ')');
 				done();
 				cb(result.rows[0]);
 			});

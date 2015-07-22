@@ -8,25 +8,23 @@
 <script src="/js/videojs.wavesurfer.js"></script>
 <script src="/js/videojs.record.js"></script>
 <script src="/js/blob-util.js"></script>
-
 <div class="req-page-main">
-
 <div class="top-info">
-	<h3>{{info.title}}</h3><br>
-	{{info.description}}<br>
-	{{info.daterequested}}
+        <h3>{{info.title}}</h3><br>
+    {{info.description}}<br>
+    {{info.daterequested}}
 </div>
 <br>
 {{delete info.users_id}}
 <br>
 <div class="media-links">
 <a href="/requestaud/{{info.id}}">Audio</a>
-<a href="/requestGif/{{info.id}}">Gif</a>
+<a href="/request/{{info.id}}">WebM</a>
 </div>
 <div class="req-media-box-small">
 	<video id="myVideo" class="video-js vjs-default-skin"></video>
 	<script>
-var player = videojs("myVideo",
+var player = videojs('myVideo',
 {
     controls: true,
     width: 320,
@@ -35,18 +33,21 @@ var player = videojs("myVideo",
         controlBar: {
             children: {
                 muteToggle: false,
-                volumeControl: false
+                volumeControl: false,
+                fullscreenToggle: false
             }
         }
     },
     plugins: {
         record: {
-            audio: false,
-            video: true,
+            animation: true,
+            animationQuality: 20,
+            animationFrameRate: 200,
             maxLength: 5
         }
     }
 });
+
 // change player background color
 player.el().style.backgroundColor = "#47AFD1";
 // error handling
@@ -81,31 +82,37 @@ player.on('finishRecord', function()
 </div>
 
 
-	<form id="file-submit-form" action="/reply/{{info.id}}" method="POST" enctype="multipart/form-data">
-		<input id="blob" name="blob" type="hidden">
-		<input id="blobpath" name="blobpath" type="hidden">
-		<input id="filetype" name="filetype" type="hidden">
-		<input id="replyUpload" name="url" type="file"><br>
-		<textarea name="description"></textarea><br>
-		<input type="submit" value="Submit">
-	</form>
+<div>
+    <form id="file-submit-form" action="/replygif/{{info.id}}" method="POST" enctype="multipart/form-data">
+        <input id="blob" name="blob" type="hidden">
+        <input id="blobpath" name="blobpath" type="hidden">
+        <input id="filetype" name="filetype" type="hidden">
+        <input id="replyUpload" name="url" type="file"><br>
+        <textarea name="description"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<br>
+<div>
 
 <br>
 <div class="file-lists">
-	{{#each list}}
-	<div>
-		{{filekind filetype url}}
+    {{#each list}}
+    <div>
+        {{filekind filetype url}}
+        {{votes}}<br>
+        {{chosen}}<br>
+            {{#if description}}
+                {{description}}<br>
+            {{/if}}
+        {{dateuploaded}}<br>
 
-			{{#if description}}
-				{{description}}<br>
-			{{/if}}
-		{{dateuploaded}}<br>
+    </div>
+    <a href="/upvote/{{../info.id}}/{{id}}">Upvote</a><br>
+        {{votes}}<br>
 
-	</div>
-	<a href="/upvote/{{../info.id}}/{{id}}">Upvote</a><br>
-    {{votes}}<br>
-	<a href="/downvote/{{../info.id}}/{{id}}">Downvote</a>
-	{{deleteFile ../info.users_id id}}
-	{{/each}}
+    <a href="/downvote/{{../info.id}}/{{id}}">Downvote</a>
+    {{deleteFile ../info.users_id id}}
+    {{/each}}
 </div>
 </div>

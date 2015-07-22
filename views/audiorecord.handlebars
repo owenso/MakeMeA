@@ -8,11 +8,10 @@
 <script src="/js/videojs.wavesurfer.js"></script>
 <script src="/js/videojs.record.js"></script>
 <script src="/js/blob-util.js"></script>
-
 <div class="req-page-main">
 
 <div class="top-info">
-	<h3>{{info.title}}</h3><br>
+		<h3>{{info.title}}</h3><br>
 	{{info.description}}<br>
 	{{info.daterequested}}
 </div>
@@ -20,39 +19,39 @@
 {{delete info.users_id}}
 <br>
 <div class="media-links">
-<a href="/requestaud/{{info.id}}">Audio</a>
+<a href="/request/{{info.id}}">WebM</a>
 <a href="/requestGif/{{info.id}}">Gif</a>
 </div>
-<div class="req-media-box-small">
-	<video id="myVideo" class="video-js vjs-default-skin"></video>
+<div class="req-media-box-large">
+	<audio id="myAudio" class="video-js vjs-default-skin"></audio>
 	<script>
-var player = videojs("myVideo",
+var player = videojs("myAudio",
 {
     controls: true,
-    width: 320,
-    height: 240,
-    children: {
-        controlBar: {
-            children: {
-                muteToggle: false,
-                volumeControl: false
-            }
-        }
-    },
+    width: 600,
+    height: 300,
     plugins: {
+        wavesurfer: {
+            src: "live",
+            waveColor: "black",
+            progressColor: "#2E732D",
+            cursorWidth: 1,
+            msDisplayMax: 20,
+            hideScrollbar: true
+        },
         record: {
-            audio: false,
-            video: true,
-            maxLength: 5
+            audio: true,
+            video: false,
+            maxLength: 20
         }
     }
 });
 // change player background color
-player.el().style.backgroundColor = "#47AFD1";
+player.el().style.backgroundColor = "#9FD6BA";
 // error handling
 player.on('deviceError', function()
 {
-    console.warn('device error:', player.deviceErrorCode);
+    console.log('device error:', player.deviceErrorCode);
 });
 // user clicked the record button and started recording
 player.on('startRecord', function()
@@ -80,8 +79,8 @@ player.on('finishRecord', function()
 </script>
 </div>
 
-
-	<form id="file-submit-form" action="/reply/{{info.id}}" method="POST" enctype="multipart/form-data">
+<div>
+	<form id="file-submit-form" action="/replyaud/{{info.id}}" method="POST" enctype="multipart/form-data">
 		<input id="blob" name="blob" type="hidden">
 		<input id="blobpath" name="blobpath" type="hidden">
 		<input id="filetype" name="filetype" type="hidden">
@@ -89,12 +88,16 @@ player.on('finishRecord', function()
 		<textarea name="description"></textarea><br>
 		<input type="submit" value="Submit">
 	</form>
+</div>
+<br>
+<div>
 
 <br>
 <div class="file-lists">
 	{{#each list}}
 	<div>
 		{{filekind filetype url}}
+		{{votes}}<br>
 
 			{{#if description}}
 				{{description}}<br>
@@ -103,7 +106,8 @@ player.on('finishRecord', function()
 
 	</div>
 	<a href="/upvote/{{../info.id}}/{{id}}">Upvote</a><br>
-    {{votes}}<br>
+	    {{votes}}<br>
+
 	<a href="/downvote/{{../info.id}}/{{id}}">Downvote</a>
 	{{deleteFile ../info.users_id id}}
 	{{/each}}

@@ -1,5 +1,7 @@
 var db = require('../db.js');
 var bcrypt = require('bcrypt');
+var pg= require('pg');
+var dbUrl = "pg://localhost/makemea_db";
 
 module.exports.User = {
 	newUser: function(body, callback){
@@ -45,8 +47,16 @@ module.exports.User = {
 				callback(updated);
 			});
 		});
-	}
-
+	},
+	getUsersById: function (cb){
+ 		pg.connect(dbUrl, function (err,client, done){
+ 			client.query('SELECT *  FROM users INNER JOIN requests ON users.id=requests.users_id;', function(err, result){
+ 				done();
+ 				cb(result.rows);
+ 			});
+ 		});
+ 		// this.end();
+	},
 
 
 };

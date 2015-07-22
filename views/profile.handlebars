@@ -1,5 +1,7 @@
-<img src="/{{{thisuser.avatar}}}" height="100" width="100">
-<h2>{{thisuser.username}}<h2><br>
+<div id="profile-body">
+<img src="/{{{thisuser.avatar}}}">
+<div id="profile-right">
+<h2>{{thisuser.username}}</h2><br>
 {{thisuser.firstname}} {{thisuser.lastname}}<br>
 Country: {{thisuser.country}}<br>
 City: {{thisuser.city}}<br>
@@ -7,11 +9,23 @@ Region : {{thisuser.region}}<br>
 email : {{thisuser.email}}<br>
 Creations Chosen: {{thisuser.chosen}}<br>
 Submissions : {{thisuser.submissions}} <br>
-{{#each subs}}
-<br>
-<div>
-{{title}}
-{{daterequested}}
-{{votes}}
 </div>
+<br>
+<table>
+  <tr>
+    <th class="row-titles">Title</th>
+    <th class="row-titles">Date</th> 
+    <th class="row-titles">Votes</th>
+  </tr>
+{{#each subs}}
+  <tr>
+    <td class = "table-data"><a href="/request/{{id}}">{{title}}</a></td>
+    <td class = "table-data"><a href="/request/{{id}}">{{daterequested}}</a></td> 
+    <td class = "table-data"><a href="/request/{{id}}">{{votes}}</a></td>
+  </tr>
 {{/each}}
+</table>
+<div>
+</div>
+
+

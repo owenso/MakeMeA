@@ -1,9 +1,26 @@
-html{
+html, body{
 	background-color: teal;
+	height:100%;
 }
 
 a{
 	text-decoration: none;
+	color:black;
+}
+
+a:visited {
+  text-decoration: none;
+  color:black;
+}
+
+a:hover {
+  text-decoration: none;
+  color:black;
+}
+
+a:active {
+  text-decoration: none;
+  color:black;
 }
 
 input[type=text]{
@@ -15,6 +32,12 @@ input[type=submit]{
 }
 textarea{
 	background-color: #F3E9D2;
+}
+
+#main{
+	margin : 0 auto;
+	width:900px;
+	height:100%;
 }
 /*Top Navigation*/
 
@@ -158,12 +181,27 @@ input[type=radio]:checked + img {
 
 /*********User Login*********/
 #login-form{
-	width:300px;
+	width:600px;
 	display:block;
 	margin: 15% auto;
-	
+
+}
+#login-form input[type=text]{
+	margin-top: 20%;
+	width:600px;
+	height:50px;
 }
 
+#login-form input[type=password]{
+	width:600px;
+	height:50px;
+	background-color: #F3E9D2;
+}
+
+#login-form input[type=submit]{
+	width:606px;
+	height:50px;
+}
 
 /********New Request**********/
 
@@ -194,4 +232,165 @@ input[type=radio]:checked + img {
   color: #F3E9D2;
   position: relative;
   top: -83px;
+}
+
+
+/*********Request List*******/
+.eachrequestdiv{
+	display: block;
+	background-color: #F3E9D2;
+	width:800px;
+	height:300px;
+	margin: 10px auto;
+}
+
+.each-request-title{
+	text-align: center;
+	padding-top: 10px;
+	font-size: 1.5em;
+}
+.voting{
+	text-align: center;
+	width:200px;
+	margin:60px auto;
+}
+.voting p {
+	margin:10px 20px;
+}
+
+.result-user-info{
+	width:150px;
+	float:left;
+	padding-left: 15px;
+	margin-top: 0px;
+}
+
+.result-user-info img{
+	height:100px;
+	width:100px;
+
+}
+
+.date-req{
+	margin:0 auto;
+	width:500px;
+	padding-left: 50px;
+}
+
+/*********Profiles*******/
+
+#profile-body{
+	background-color: #F3E9D2;
+	min-height: 100%;
+	padding: 20px 10px 100px 10px;
+	font-size: 18px;
+
+}
+
+#profile-body h2{
+	font-size: 50px;
+	margin-bottom: -10px;
+}
+
+#profile-body img{
+	float:left;
+	margin-left: 100px;
+	margin-top: 50px;
+	height:200;
+	width:200;
+
+}
+
+#profile-right{
+	text-align:right;
+	margin-right: 100px;
+}
+
+table{
+	margin-top: 50px;
+}
+
+table, th, td {
+   border: 1px solid black;
+}
+.table-data{
+	font-size: 18px;
+	padding: 0 10px;
+}
+.row-titles{
+	font-size: 35px;
+}
+
+
+/*****Req Page******/
+.req-page-main{
+	height:100%;
+	background-color: #F3E9D2;
+	width:900px;
+	margin: 0 auto;
+}
+
+.top-info{
+	padding-top: 15px;
+	padding-bottom: 10px;
+	width:100%;
+	border-bottom: 2px solid black;
+	text-align: center;
+	font-size: 24px;
+}
+
+.top-info h2{
+	padding-top: 15px;
+	padding-bottom: 10px;
+	width:100%;
+	border-bottom: 2px solid black;
+	text-align: center;
+	font-size: 60px;
+}
+
+.media-links{
+	width:100%;
+	font-size: 24px;
+	height:100px;
+	text-align: center;
+}
+
+.media-links a {
+	margin:0 50px;
+	border: 1px solid black;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 60px;
+	padding-left:60px;
+}
+
+.media-links a:hover{
+	background-color:#114B5F;
+	color:#F3E9D2; 
+}
+
+.req-media-box-small{
+	margin: 0 auto;
+	width:320px;
+}
+
+#file-submit-form{
+	padding-top: 50px;
+	width:600px;
+	margin: 0 auto;
+}
+#file-submit-form input[type="file"]{
+	padding-top: 10px;
+	padding-bottom:10px;
+}
+#file-submit-form textarea{
+	width:600px;
+	height:200px;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.file-lists{
+	width:400px;
+	margin:0 auto;
 }

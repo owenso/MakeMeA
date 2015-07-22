@@ -1,12 +1,20 @@
-{{#each info}}
-<div>
+{{#each result}}
+<div class="eachrequestdiv">
 	<a href="/request/{{id}}">
-		{{title}}
+		<h3 class="each-request-title">{{title}}<h3>
 	</a>
-		{{daterequested}}
-		{{description}}
-		{{votes}}
-		<a href="/upvotereq/{{id}}">Upvote</a>
-		<a href="/downvotereq/{{id}}">Downvote</a>
+		<a href="/profile/{{id}}"><div class="result-user-info">
+		<img src="../{{avatar}}">
+		{{username}}<br>
+		{{city}},{{country}}
+		</div></a>
+		<br>
+		<span class="date-req">{{daterequested}}<span>
+		<br>
+		<div class="voting">
+		<a href="/upvotereq/{{id}}"><button>Upvote</button></a>
+		<p>{{votes}}</p>
+		<a href="/downvotereq/{{id}}"><button>Downvote</button></a>
+		</div>
 </div>
 {{/each}}
