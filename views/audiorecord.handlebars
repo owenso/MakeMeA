@@ -87,7 +87,6 @@
 		</form>
 	</div>
 
-	<br>
 	<div class="file-lists">
 		{{#each list}}
 			<div class="files">
@@ -103,7 +102,8 @@
 				<a href="/upvote/{{../info.id}}/{{id}}">
 					<button>Upvote</button>
 				</a>
-				<br> {{votes}}
+				<br> 
+				{{votes}}
 				<br>
 
 				<a href="/downvote/{{../info.id}}/{{id}}">

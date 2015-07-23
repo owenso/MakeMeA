@@ -338,7 +338,7 @@ td {
 /*****Req Page******/
 
 .req-page-main {
-    height: 100%;
+    min-height: 100%;
     background-color: #F3E9D2;
     width: 900px;
     margin: 0 auto;
@@ -412,17 +412,17 @@ td {
 }
 
 .file-lists {
-    width: 320px;
+    width: 900px;
     background-color: #F3E9D2;
-    margin: 0 auto;
+    margin: 15px auto;
     text-align: center;
-    border: 1px solid black;
 }
 
 .files {
-    width: 320px;
     background-color: #F3E9D2;
     margin: 0 auto;
+    padding:10px;
     text-align: center;
-    border: 1px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
