@@ -1,4 +1,6 @@
-var db = require('../db.js');
+// var db = require('../db.js');
+var db = require(process.env.DATABASE_URL);
+
 var bcrypt = require('bcrypt');
 var pg = require('pg');
 var dbUrl = "pg://localhost/makemea_db";
