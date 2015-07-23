@@ -17,7 +17,6 @@ module.exports.controller = function(app) {
 	     if (error) {
 	       console.error("write error:  " + error.message);
 	     } else {
-	     	console.log(req.body.blob);
 	       console.log("Successful Write to " + path);
 	     }
 			});
@@ -59,15 +58,14 @@ module.exports.controller = function(app) {
     		console.log("mkdirp failed - " + err);
 			}
 
-		});	
 			fs.writeFile(path.join(__dirname, '../public/uploads/', pather, '/video.gif'), req.body.blob, 'base64', function(error) {
 	     if (error) {
 	       console.error("write error:  " + error.message);
 	     } else {
-	     	console.log(req.body.blob);
 	       console.log("Successful Write to " + path);
 	     }
 			});
+		});	
 
 		if(req.session.users_id){
 			req.body.users_id = req.session.users_id;
