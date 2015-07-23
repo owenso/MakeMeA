@@ -1,6 +1,6 @@
 var Post = require('../models/post.js').Post;
 var User = require('../models/user.js').User;
-var File = require('../models/File.js').File;
+var File = require('../models/file.js').File;
 // var db = require('../db.js');
 var db = require(process.env.DATABASE_URL);
 
