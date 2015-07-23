@@ -1,5 +1,5 @@
 var pg = require('pg');
-var dbUrl = "pg://localhost/makemea_db";
+var dbUrl = "pg://localhost/makemea";
 
 module.exports = {
     end: function() {
