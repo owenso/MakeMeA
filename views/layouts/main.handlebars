@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Make Me A...</title>
@@ -9,22 +10,32 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
 	<nav>
-	<div id ="left-nav">
-			<a href="/"><h1>Make Me A...</h1></a>
-			<div id = "left-menu-nav">
-			<a href="/"><h2>Home</h2></a>
-			<a href="/requests"><h2>Create</h2></a>
-			<a href="/newRequest"><h2>Request</h2></a>
+		<div id="left-nav">
+			<a href="/">
+				<h1>Make Me A...</h1>
+			</a>
+			<div id="left-menu-nav">
+				<a href="/">
+					<h2>Home</h2>
+				</a>
+				<a href="/requests">
+					<h2>Create</h2>
+				</a>
+				<a href="/newRequest">
+					<h2>Request</h2>
+				</a>
+			</div>
 		</div>
-	</div>	
-		<div id = "right-nav">
+		<div id="right-nav">
 			{{{loggedin}}}
 		</div>
 	</nav>
 	<div id="main">
-	{{{body}}}
+		{{{body}}}
 	</div>
 </body>
+
 </html>

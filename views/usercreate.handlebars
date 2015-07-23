@@ -2,22 +2,32 @@
 <script type="text/javascript" src="/js/newuser.js"></script>
 
 <form id="new-user-form" action="/createUser" method="POST" enctype="multipart/form-data">
-	<input name="firstname" type="text" placeholder="First Name" required><br>
-	<input name="lastname" type="text" placeholder="Last Name" required><br>
-	<input name="username" type="text" placeholder="Make a Username" required><br>
-	<input name="password" type="password" placeholder="Make a Password" required><br>
-	<div id = "avatar-selector">
+	<input name="firstname" type="text" placeholder="First Name" required>
+	<br>
+	<input name="lastname" type="text" placeholder="Last Name" required>
+	<br>
+	<input name="username" type="text" placeholder="Make a Username" required>
+	<br>
+	<input name="password" type="password" placeholder="Make a Password" required>
+	<br>
+	<div id="avatar-selector">
 		{{#each avatars}}
-		<label>
-		<input name="avatar" type="radio" value="{{this}}"><img src="{{this}}"></input>
-		</label>
+			<label>
+				<input name="avatar" type="radio" value="{{this}}">
+				<img src="{{this}}">
+				</input>
+			</label>
 		{{/each}}
 		<label>
-		<input value="yourown" name="avatar" type="radio"><img src="http://placecage.com/200/200"></input>
+			<input value="yourown" name="avatar" type="radio">
+			<img src="http://placecage.com/200/200">
+			</input>
 		</label>
 	</div>
-	<input id="avatarupload" name="avatar" type="file"><br>
-	<input name="email" type="email" placeholder="Email" required><br>
+	<input id="avatarupload" name="avatar" type="file">
+	<br>
+	<input name="email" type="email" placeholder="Email" required>
+	<br>
 	<input id="country" name="country" type="hidden">
 	<input id="city" name="city" type="hidden">
 	<input id="region" name="region" type="hidden">

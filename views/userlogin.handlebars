@@ -1,16 +1,18 @@
 <script>
-$.get("http://ipinfo.io", function(response) {
+  $.get("http://ipinfo.io", function(response) {
     $('#country').val(response.country);
     $('#city').val(response.city);
     $('#region').val(response.region);
-}, "jsonp");
+  }, "jsonp");
 </script>
 
 <form id="login-form" action="/login" method="POST">
-	<input name="username" type="text" placeholder="Username" required><br>
-	<input name="password" type="password" placeholder="Password" required><br>
-	<input id="country" name="country" type="hidden">
-	<input id="city" name="city" type="hidden">
-	<input id="region" name="region" type="hidden">
-	<input type="submit" value="Submit">
+  <input name="username" type="text" placeholder="Username" required>
+  <br>
+  <input name="password" type="password" placeholder="Password" required>
+  <br>
+  <input id="country" name="country" type="hidden">
+  <input id="city" name="city" type="hidden">
+  <input id="region" name="region" type="hidden">
+  <input type="submit" value="Submit">
 </form>

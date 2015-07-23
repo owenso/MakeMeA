@@ -10,105 +10,107 @@
 <script src="/js/blob-util.js"></script>
 <div class="req-page-main">
 
-<div class="top-info">
-		<h3>{{info.title}}</h3><br>
-	{{info.description}}<br>
-	{{info.daterequested}}
-</div>
-<br>
-{{delete info.users_id}}
-<br>
-<div class="media-links">
-<a href="/request/{{info.id}}">WebM</a>
-<a href="/requestGif/{{info.id}}">Gif</a>
-</div>
-<div class="req-media-box-large">
-	<audio id="myAudio" class="video-js vjs-default-skin"></audio>
-	<script>
-var player = videojs("myAudio",
-{
-    controls: true,
-    width: 600,
-    height: 300,
-    plugins: {
-        wavesurfer: {
-            src: "live",
-            waveColor: "black",
-            progressColor: "#2E732D",
-            cursorWidth: 1,
-            msDisplayMax: 20,
-            hideScrollbar: true
-        },
-        record: {
-            audio: true,
-            video: false,
-            maxLength: 20
-        }
-    }
-});
-// change player background color
-player.el().style.backgroundColor = "#9FD6BA";
-// error handling
-player.on('deviceError', function()
-{
-    console.log('device error:', player.deviceErrorCode);
-});
-// user clicked the record button and started recording
-player.on('startRecord', function()
-{
-    console.log('started recording!');
-});
-// user completed recording and stream is available
-player.on('finishRecord', function()
-{
-		blobUtil.blobToBase64String(player.recordedData).then(function (base64String) {
-  // success 
-  console.log(player.recordedData);
-  $('#blob').val(base64String);
-		}).catch(function (err) {
-  // error 
-		});
-	$('#blobpath').val(URL.createObjectURL(player.recordedData));
-	$('#filetype').val(player.recordedData.type);
-		// $('#blob').val(URL.createObjectURL(player.recordedData));
-		// console.log();
-    // the blob object contains the recorded data that
-    // can be downloaded by the user, stored on server etc.
-    console.log('finished recording: ', player.recordedData);
-});
-</script>
-</div>
-
-<div>
-	<form id="file-submit-form" action="/replyaud/{{info.id}}" method="POST" enctype="multipart/form-data">
-		<input id="blob" name="blob" type="hidden">
-		<input id="blobpath" name="blobpath" type="hidden">
-		<input id="filetype" name="filetype" type="hidden">
-		<input id="replyUpload" name="url" type="file"><br>
-		<textarea name="description"></textarea><br>
-		<input type="submit" value="Submit">
-	</form>
-</div>
-<br>
-<div>
-
-<br>
-<div class="file-lists">
-	{{#each list}}
-	<div>
-		{{filekind filetype url}}
-
-			{{#if description}}
-				{{description}}<br>
-			{{/if}}
-		{{dateuploaded}}<br>
-
+	<div class="top-info">
+		<h3>{{info.title}}</h3>
+		<br> {{info.description}}
+		<br> {{info.daterequested}}
 	</div>
-	<a href="/upvote/{{../info.id}}/{{id}}"><button>Upvote</button></a><br>
-	    {{votes}}<br>
+	<br> {{delete info.users_id}}
+	<br>
+	<div class="media-links">
+		<a href="/request/{{info.id}}">WebM</a>
+		<a href="/requestGif/{{info.id}}">Gif</a>
+	</div>
+	<div class="req-media-box-large">
+		<audio id="myAudio" class="video-js vjs-default-skin"></audio>
+		<script>
+			var player = videojs("myAudio", {
+				controls: true,
+				width: 600,
+				height: 300,
+				plugins: {
+					wavesurfer: {
+						src: "live",
+						waveColor: "black",
+						progressColor: "#2E732D",
+						cursorWidth: 1,
+						msDisplayMax: 20,
+						hideScrollbar: true
+					},
+					record: {
+						audio: true,
+						video: false,
+						maxLength: 20
+					}
+				}
+			});
+			// change player background color
+			player.el().style.backgroundColor = "#9FD6BA";
+			// error handling
+			player.on('deviceError', function() {
+				console.log('device error:', player.deviceErrorCode);
+			});
+			// user clicked the record button and started recording
+			player.on('startRecord', function() {
+				console.log('started recording!');
+			});
+			// user completed recording and stream is available
+			player.on('finishRecord', function() {
+				blobUtil.blobToBase64String(player.recordedData).then(function(base64String) {
+					// success
+					console.log(player.recordedData);
+					$('#blob').val(base64String);
+				}).catch(function(err) {
+					// error
+				});
+				$('#blobpath').val(URL.createObjectURL(player.recordedData));
+				$('#filetype').val(player.recordedData.type);
+				// $('#blob').val(URL.createObjectURL(player.recordedData));
+				// console.log();
+				// the blob object contains the recorded data that
+				// can be downloaded by the user, stored on server etc.
+				console.log('finished recording: ', player.recordedData);
+			});
+		</script>
+	</div>
 
-	<a href="/downvote/{{../info.id}}/{{id}}"><button>Downvote</button></a>
-	{{deleteFile ../info.users_id id}}
-	{{/each}}
-</div>
+	<div>
+		<form id="file-submit-form" action="/replyaud/{{info.id}}" method="POST" enctype="multipart/form-data">
+			<input id="blob" name="blob" type="hidden">
+			<input id="blobpath" name="blobpath" type="hidden">
+			<input id="filetype" name="filetype" type="hidden">
+			<input id="replyUpload" name="url" type="file">
+			<br>
+			<textarea name="description"></textarea>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+
+	<br>
+	<div class="file-lists">
+		{{#each list}}
+			<div class="files">
+				{{filekind filetype url}}
+
+				{{#if description}}
+					{{description}}
+					<br>
+				{{/if}}
+				{{dateuploaded}}
+				<br>
+
+				<a href="/upvote/{{../info.id}}/{{id}}">
+					<button>Upvote</button>
+				</a>
+				<br> {{votes}}
+				<br>
+
+				<a href="/downvote/{{../info.id}}/{{id}}">
+					<button>Downvote</button>
+				</a>
+				{{deleteFile ../info.users_id id}}
+			</div>
+		{{/each}}
+	</div>
 </div>
