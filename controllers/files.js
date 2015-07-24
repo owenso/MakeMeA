@@ -6,6 +6,7 @@ var fs = require("fs");
 
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
+        console.log(req.body.blobpath);
         var pather = req.body.blobpath.replace('blob:http%3A//localhost%3A3000/', "");
         var masterpather = path.join(__dirname, '../public/uploads/', pather, '/');
         mkdirp(masterpather, function(err) {
