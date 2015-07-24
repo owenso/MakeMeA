@@ -6,15 +6,14 @@ var fs = require("fs");
 
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
-        console.log("directory nane " + __dirname + '/../public/upload/');
-        var masterpather = path.join(req.headers.host, '/uploads/', req.body.blobpath, '/');
+        var masterpather = path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/');
         console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
             if (err) {
                 console.log("mkdirp failed - " + err);
             }
             else{
-            fs.writeFile(path.join(__dirname, '/../public/upload/', '/video.webm'), req.body.blob, 'base64', function(error) {
+            fs.writeFile(path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/video.webm'), req.body.blob, 'base64', function(error) {
                 if (error) {
                     console.error("write error:  " + error.message);
                 } else {
@@ -51,20 +50,21 @@ module.exports.controller = function(app) {
     });
 
     app.post('/replygif/:id', function(req, res) {
-        var pather = req.body.blobpath.replace('blob:http%3A//localhost%3A3000/', "");
-        var masterpather = path.join(__dirname, '../public/uploads/', pather, '/');
+        var masterpather = path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/');
+        console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
             if (err) {
                 console.log("mkdirp failed - " + err);
             }
-
-            fs.writeFile(path.join(__dirname, '../public/uploads/', pather, '/video.gif'), req.body.blob, 'base64', function(error) {
+            else{
+            fs.writeFile(path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/video.gif'), req.body.blob, 'base64', function(error) {
                 if (error) {
                     console.error("write error:  " + error.message);
                 } else {
                     console.log("Successful Write to " + path);
                 }
             });
+        }
         });
 
         if (req.session.users_id) {
@@ -72,7 +72,7 @@ module.exports.controller = function(app) {
         }
         if (req.body.blob) {
             console.log('gif');
-            req.body.url = '/uploads/' + pather + '/video.gif';
+            req.body.url = '/uploads/' + req.body.blobpath + '/video.gif';
         } else {
             console.log('file upload');
             req.body.url = req.files.url.file.replace("public", "");
@@ -94,15 +94,14 @@ module.exports.controller = function(app) {
     });
 
     app.post('/replyaud/:id', function(req, res) {
-        var pather = req.body.blobpath.replace('blob:http%3A//localhost%3A3000/', "");
-        var masterpather = path.join(__dirname, '../public/uploads/', pather, '/');
+var masterpather = path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/');
+        console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
             if (err) {
                 console.log("mkdirp failed - " + err);
             }
-
-        });
-        fs.writeFile(path.join(__dirname, '../public/uploads/', pather, '/video.wav'), req.body.blob, 'base64', function(error) {
+            else{
+            fs.writeFile(path.join(__dirname, '/../public/uploads/', req.body.blobpath, '/video.wav'), req.body.blob, 'base64', function(error) {
             if (error) {
                 console.error("write error:  " + error.message);
             } else {
@@ -110,13 +109,15 @@ module.exports.controller = function(app) {
                 console.log("Successful Write to " + path);
             }
         });
+        }
+        });
 
         if (req.session.users_id) {
             req.body.users_id = req.session.users_id;
         }
         if (req.body.blob) {
             console.log('wav');
-            req.body.url = '/uploads/' + pather + '/video.wav';
+            req.body.url = '/uploads/' + req.body.blobpath + '/video.wav';
         } else {
             console.log('file upload');
             req.body.url = req.files.url.file.replace("public", "");

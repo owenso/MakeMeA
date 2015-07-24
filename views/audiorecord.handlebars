@@ -58,15 +58,17 @@
 			player.on('finishRecord', function() {
 				blobUtil.blobToBase64String(player.recordedData).then(function(base64String) {
 					// success
-					console.log(player.recordedData);
 					$('#blob').val(base64String);
 				}).catch(function(err) {
 					// error
 				});
-				$('#blobpath').val(URL.createObjectURL(player.recordedData));
+				//uses createObjectURL to easily get a unique string
+				var unique = URL.createObjectURL(player.recordedData)
+				var unique = unique.split("/").pop();
+
+				//puts the string into the form so it can be passed to the backend
+				$('#blobpath').val(unique);
 				$('#filetype').val(player.recordedData.type);
-				// $('#blob').val(URL.createObjectURL(player.recordedData));
-				// console.log();
 				// the blob object contains the recorded data that
 				// can be downloaded by the user, stored on server etc.
 				console.log('finished recording: ', player.recordedData);
