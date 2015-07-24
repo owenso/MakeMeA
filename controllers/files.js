@@ -7,7 +7,7 @@ var fs = require("fs");
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
         console.log("blobpath is " +  req.body.blobpath);
-        console.log(req);
+        console.log(req.uuid);
         var pather = req.body.blobpath.replace('blob:http%3A//' + request.headers.host, "");
         var masterpather = path.join(request.headers.host, '/uploads/', pather, '/');
         mkdirp(masterpather, function(err) {
