@@ -6,7 +6,7 @@ var fs = require("fs");
 
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
-        console.log("directory nane " + __dirname);
+        console.log("directory nane " + __dirname + '../public/upload/');
         var masterpather = path.join(req.headers.host, '/uploads/', req.body.blobpath, '/');
         console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
