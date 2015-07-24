@@ -13,7 +13,7 @@ module.exports.controller = function(app) {
             if (err) {
                 console.log("mkdirp failed - " + err);
             }
-
+            else{
             fs.writeFile(path.join(req.headers.host, '/uploads/', req.body.blobpath, '/video.webm'), req.body.blob, 'base64', function(error) {
                 if (error) {
                     console.error("write error:  " + error.message);
@@ -21,6 +21,7 @@ module.exports.controller = function(app) {
                     console.log("Successful Write to " + path);
                 }
             });
+            }
         });
 
         if (req.session.users_id) {
