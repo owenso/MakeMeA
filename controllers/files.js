@@ -6,7 +6,7 @@ var fs = require("fs");
 
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
-        console.log("directory nane " + __dirname + '../public/upload/');
+        console.log("directory nane " + __dirname + '/../public/upload/');
         var masterpather = path.join(req.headers.host, '/uploads/', req.body.blobpath, '/');
         console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
@@ -14,7 +14,7 @@ module.exports.controller = function(app) {
                 console.log("mkdirp failed - " + err);
             }
             else{
-            fs.writeFile(path.join(req.headers.host, '/uploads/', req.body.blobpath, '/video.webm'), req.body.blob, 'base64', function(error) {
+            fs.writeFile(path.join(__dirname, '/../public/upload/', '/video.webm'), req.body.blob, 'base64', function(error) {
                 if (error) {
                     console.error("write error:  " + error.message);
                 } else {
