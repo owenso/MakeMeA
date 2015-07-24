@@ -6,16 +6,15 @@ var fs = require("fs");
 
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
-        console.log("blobpath is " +  req.body.blobpath);
-        console.log(req.uuid);
-        var pather = req.body.blobpath.replace('blob:http%3A//' + request.headers.host, "");
-        var masterpather = path.join(request.headers.host, '/uploads/', pather, '/');
+        console.log("directory nane " + __dirname);
+        var masterpather = path.join(req.headers.host, '/uploads/', req.body.blobpath, '/');
+        console.log(" created path = " + masterpather);
         mkdirp(masterpather, function(err) {
             if (err) {
                 console.log("mkdirp failed - " + err);
             }
 
-            fs.writeFile(path.join(__dirname, '../public/uploads/', pather, '/video.webm'), req.body.blob, 'base64', function(error) {
+            fs.writeFile(path.join(req.headers.host, '/uploads/', req.body.blobpath, '/video.webm'), req.body.blob, 'base64', function(error) {
                 if (error) {
                     console.error("write error:  " + error.message);
                 } else {
@@ -29,7 +28,7 @@ module.exports.controller = function(app) {
         }
         if (req.body.blob) {
             console.log('webm');
-            req.body.url = '/uploads/' + pather + '/video.webm';
+            req.body.url = '/uploads/' + req.body.blobpath + '/video.webm';
         } else {
             console.log('file upload');
             req.body.url = req.files.url.file.replace("public", "");
