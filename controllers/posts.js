@@ -2,13 +2,13 @@ var Post = require('../models/post.js').Post;
 var User = require('../models/user.js').User;
 var File = require('../models/file.js').File;
 
-// var db = require('../db.js');
-var db = require(process.env.DATABASE_URL);
+var db = require('../db.js');
 
 var exphbs = require('express-handlebars');
 var Handlebars = require('handlebars');
 var pg = require('pg');
-var dbUrl = "pg://localhost/makemea_db";
+// var dbUrl = "pg://localhost/makemea_db";
+var dbUrl = "process.env.DATABASE_URL" || "pg://localhost/makemea_db";
 module.exports.controller = function(app) {
 
     //

@@ -1,11 +1,10 @@
 var User = require('../models/user.js').User;
 var Post = require('../models/post.js').Post;
-// var db = require('../db.js');
-var db = require(process.env.DATABASE_URL);
+var db = require('../db.js');
 
 var fs = require('fs');
 var pg = require('pg');
-var dbUrl = "pg://localhost/makemea_db";
+var dbUrl = process.env.DATABASE_URL || "pg://localhost/makemea_db";
 
 module.exports.controller = function(app) {
 

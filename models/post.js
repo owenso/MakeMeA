@@ -1,6 +1,4 @@
-// var db = require('../db.js');
-var db = require(process.env.DATABASE_URL);
-
+var db = require('../db.js');
 
 module.exports.Post = {
     newRequest: function(body, callback) {

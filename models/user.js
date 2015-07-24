@@ -1,9 +1,7 @@
-// var db = require('../db.js');
-var db = require(process.env.DATABASE_URL);
-
+var db = require('../db.js');
 var bcrypt = require('bcrypt');
 var pg = require('pg');
-var dbUrl = "pg://localhost/makemea_db";
+var dbUrl = process.env.DATABASE_URL || "pg://localhost/makemea_db";
 
 module.exports.User = {
     newUser: function(body, callback) {

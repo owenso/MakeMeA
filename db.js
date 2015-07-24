@@ -1,5 +1,5 @@
 var pg = require('pg');
-var dbUrl = process.env.DATABASE_URL || "pg://localhost/makemea";
+var dbUrl = process.env.DATABASE_URL || "pg://localhost/makemea_db";
 
 module.exports = {
     end: function() {

@@ -5,9 +5,8 @@ var logger = require('morgan');
 var bb = require('express-busboy');
 var exphbs = require('express-handlebars');
 var methodOverride = require('method-override');
-// var db = require('./db.js');
-var db = require(process.env.DATABASE_URL);
-console.log(process.env.DATABASE_URL);
+var db = require('./db.js');
+
 var path = require('path');
 var fs = require('fs');
 var session = require('express-session');

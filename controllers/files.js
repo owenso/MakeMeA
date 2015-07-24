@@ -1,8 +1,5 @@
 var File = require('../models/file.js').File;
-
-// var db = require('../db.js');
-var db = require(process.env.DATABASE_URL);
-
+var db = require('../db.js');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var fs = require("fs");
