@@ -7,8 +7,8 @@ var fs = require("fs");
 module.exports.controller = function(app) {
     app.post('/reply/:id', function(req, res) {
         console.log("blobpath is " +  req.body.blobpath);
-        var pather = req.body.blobpath.replace('blob:http%3A//localhost%3A3000/', "");
-        var masterpather = path.join(__dirname, '../public/uploads/', pather, '/');
+        var pather = req.body.blobpath.replace('blob:http%3A//' + document.domain, "");
+        var masterpather = path.join(document.domain, '/uploads/', pather, '/');
         mkdirp(masterpather, function(err) {
             if (err) {
                 console.log("mkdirp failed - " + err);
